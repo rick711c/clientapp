@@ -13,8 +13,13 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
+import { BorderAll } from "@mui/icons-material";
+import { Icon } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Home", "Appointments", "History", "About Us"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
@@ -54,25 +59,7 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-          {/* <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography> */}
-
+          {/* for mobile display */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -111,30 +98,14 @@ const ResponsiveAppBar = () => {
             </Menu>
           </Box>
 
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-          {/* <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+          {/* containg the app bar items */}
+          <Box
             sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              display: { xs: "none", md: "inline-flex", gap: 48 },
             }}
           >
-            LOGO
-          </Typography> */}
-
-          {/* containg the app bar items */}
-          <Box  border={2} sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page, index) => (
-
               <Box
                 height={48}
                 display="flex"
@@ -142,8 +113,7 @@ const ResponsiveAppBar = () => {
                 alignItems="center"
                 // mx={2}
                 key={index}
-                //borderBottom={clickedStates[index] ? 1 : 0}
-                border={2}
+                borderBottom={clickedStates[index] ? 1 : 0}
                 borderColor="white"
                 onClick={() => handleButtonClick(index)}
               >
@@ -155,33 +125,39 @@ const ResponsiveAppBar = () => {
                   {page}
                 </Button>
               </Box>
-
             ))}
           </Box>
 
+          {/* containg icons (profile, notification, contact us) */}
           <Box sx={{ flexGrow: 0 }}>
+            <Box
+              display="inline-flex"
+              justifyContent="center"
+              alignItems="center"
+              gap={4}
+              paddingLeft={4}
+              paddingRight={4}
+            >
+              <Tooltip title="Contact Us">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <SupportAgentIcon fontSize="large" />
+                </IconButton>
+              </Tooltip>
 
-            {/* containg icons (profile, notification, contact us) */}
-            <Box display="flex" justifyContent="center" alignItems="center" border={2} >
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: 2 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <Tooltip title="Notifications">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <NotificationsIcon fontSize="large" />
                 </IconButton>
               </Tooltip>
 
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: 2 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: 2 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <AccountCircleIcon fontSize="large" />
                 </IconButton>
               </Tooltip>
             </Box>
 
+            {/* options after cliking profile button */}
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

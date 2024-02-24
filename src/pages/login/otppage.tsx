@@ -14,11 +14,13 @@ import {
   import theme from "../../theme/theme";
   import { LoginPageDoctorIcon } from "../../assets/images/male-doctor-svg";
 import { MaleDoctorConsultataionIcon } from "../../assets/images/male-doctor-consultation";
+import { OTPInput } from "../../components/otpinput";
   
   export const OTPpage = () => {
     const navigate = useNavigate();
     return (
       <ThemeProvider theme={theme}>
+        
         <Box
           sx={{
             padding: "24px",
@@ -59,7 +61,7 @@ import { MaleDoctorConsultataionIcon } from "../../assets/images/male-doctor-con
                 display: "flex",
                 flexDirection: "column", // Display items in a column
                 justifyContent: "space-evenly",
-                height: { sm: 288, xs: 230 },
+                height: { sm: 288, xs: 260 },
                 width: { sm: 255, xs: 253 },
               }}
             >
@@ -72,13 +74,7 @@ import { MaleDoctorConsultataionIcon } from "../../assets/images/male-doctor-con
               </Box>
   
               {/* mobile no text field */}
-              <TextField
-                required
-                id="outlined-required"
-                label="Mobile No"
-                placeholder="Mobile No"
-              />
-  
+              <OTPInput/>
               {/* get otp button */}
               <Button
                 variant="contained"

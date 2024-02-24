@@ -58,7 +58,6 @@ export const Login = () => {
           >
             <LoginPageDoctorIcon />
           </Box>
-
           <Box
             sx={{
               display: "flex",

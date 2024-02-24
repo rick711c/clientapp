@@ -21,7 +21,7 @@ const Homepage = () => {
         }}
       >
         <Box display={'flex'} gap={2} flexDirection={'column'}>
-          <Typography variant="h2">Upcoming Appointments</Typography>
+          <Typography variant="h3">Upcoming Appointments</Typography>
           <UpcomingAppoinments />
         </Box>
       </Container>

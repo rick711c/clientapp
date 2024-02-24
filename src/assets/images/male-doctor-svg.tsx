@@ -193,6 +193,6 @@ export const LoginPageDoctorIcon = () => {
           </clipPath>
         </defs>
       </svg>
-      </Container>
+    </Container>
   );
 };

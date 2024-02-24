@@ -50,8 +50,6 @@ export const Login = () => {
           <Box
             sx={{
               display: "flex",
-
-              borderColor: "red",
               height: { sm: 288, xs: 170 },
               width: { sm: 255, xs: 156 },
             }}
@@ -97,6 +95,7 @@ export const Login = () => {
             </Button>
           </Box>
         </Box>
+
       </Box>
     </ThemeProvider>
   );

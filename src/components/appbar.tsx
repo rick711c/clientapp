@@ -14,6 +14,8 @@ import { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import { ThemeProvider } from "@emotion/react";
+import theme from "../theme/theme";
 
 const pages = ["Home", "Appointments", "History", "About Us"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -52,7 +54,9 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+   <ThemeProvider theme={theme}>
+    <AppBar position="static" color="primary">
+      
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
@@ -183,6 +187,7 @@ const ResponsiveAppBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
   );
 };
 export default ResponsiveAppBar;

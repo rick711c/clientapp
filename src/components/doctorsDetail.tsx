@@ -2,15 +2,15 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { DoctorSVGIcon } from "../assets/icons/doctor-svg-icon";
 
-export const DoctorsdetailsCard: React.FC<{ flag: boolean }> = ({ flag }) => {
+export const DoctorsdetailsCard: React.FC<{ flag: boolean }> = ({flag}) => {
   return (
     <Box
       display={"flex"}
       flexDirection={"row"}
       alignItems={"center"}
-      marginBottom={2}
       gap={1}
     >
+      {/* doctor icon */}
       {/* doctor icon (conditionally rendered) */}
       {flag && (
         <Box sx={{ height: 61, width: 46 }}>

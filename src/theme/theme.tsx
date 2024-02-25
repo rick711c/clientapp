@@ -24,6 +24,11 @@ const theme = createTheme({
       fontWeight: "600", // Semi-bold
     },
 
+    h6:{
+      fontSize: "14px",
+      fontWeight: "600", // Semi-bold
+    },
+
     body1: {
       fontSize: "16px",
     },

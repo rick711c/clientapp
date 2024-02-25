@@ -18,25 +18,24 @@ import { DoctorsdetailsCard } from "../../components/doctorsdetailsCard";
 import { BookingDateTimeAddress } from "../../components/bookingDateTimeAdd";
 
 export const UpcomingAppoinments = () => {
+  const flag:boolean = true;
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex", width: { xs: "100%", sm: 336 } }}>
         <Paper
           elevation={3}
-          
           sx={{
             padding: 2,
             //maxWidth: 256,
             width: "100%",
-            backgroundColor:'white'
+            backgroundColor: "white",
           }}
         >
           {/* doctor's details frame */}
-         
-          <DoctorsdetailsCard/>
+          <DoctorsdetailsCard flag={flag} />
 
           {/* booking date time address */}
-          <BookingDateTimeAddress/>
+          <BookingDateTimeAddress />
         </Paper>
       </Box>
     </ThemeProvider>

@@ -18,7 +18,7 @@ import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 export const UpcomingAppoinments = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Container sx={{ display: "flex", width: { xs: "100%", sm: 336} }}>
+      <Box sx={{ display: "flex", width: { xs: "100%", sm: 336 } }}>
         <Paper
           elevation={3}
           
@@ -79,7 +79,7 @@ export const UpcomingAppoinments = () => {
             <Typography variant="body2">Uttarpara, kolkata</Typography>
           </Box>
         </Paper>
-      </Container>
+      </Box>
     </ThemeProvider>
   );
 };

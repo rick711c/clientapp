@@ -5,41 +5,49 @@ import { Box, Container, ThemeProvider, Typography } from "@mui/material";
 import { Margin } from "@mui/icons-material";
 import theme from "../../theme/theme";
 import { Specialisation } from "./specialisation";
+import { DoctorQuote } from "./doctor's_quote";
+import { Reviwes } from "./reviwes";
 
 const Homepage = () => {
   const navigate = useNavigate();
-  
+
   return (
     <ThemeProvider theme={theme}>
       <Box>
-      <ResponsiveAppBar></ResponsiveAppBar>
+        <ResponsiveAppBar></ResponsiveAppBar>
       </Box>
-      
       <Container
         sx={{
-          padding: {xs:2, sm:4},
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          padding: { xs: 2, sm: 4 },
           border: 2,
           borderColor: "red",
-        //   boxSizing: "border-box",
-          margin:0,
-          height: "100vh",
+          margin: 0,
+          height: "100%",
           width: "100%",
-          
-          backgroundColor:theme.palette.background.default
+          justifyContent: "space-between",
+          gap: { xs: 4 },
+
+          backgroundColor: theme.palette.background.default,
         }}
         maxWidth={false}
       >
-        <Box display={'flex'} flexDirection={'column'} gap={8}>
-        <Box display={'flex'} gap={2} flexDirection={'column'}>
-          <Typography variant="h3">Upcoming Appointments</Typography>
-          <UpcomingAppoinments />
+        <Box sx={{display:'flex',flexDirection:'column',gap:{xs:4,sm:8}}}>
+          <Box display={"flex"} gap={2} flexDirection={"column"}>
+            <Typography variant="h3">Upcoming Appointments</Typography>
+            <UpcomingAppoinments />
+          </Box>
+
+          <Box display={"flex"} gap={2} flexDirection={"column"}>
+            <Typography variant="h3">Specialisation</Typography>
+            <Specialisation />
+          </Box>
         </Box>
 
-        <Box display={'flex'} gap={2} flexDirection={'column'}>
-          <Typography variant="h3">Specialisation</Typography>
-          < Specialisation/>
-        </Box>
-
+        <Box display={"flex"} gap={2} flexDirection={"column"}>
+          <Typography variant="h3">What People are saying</Typography>
+          <Reviwes />
         </Box>
       </Container>
     </ThemeProvider>

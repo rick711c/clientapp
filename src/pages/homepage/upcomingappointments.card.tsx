@@ -18,13 +18,15 @@ import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 export const UpcomingAppoinments = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex", width: { xs: "100%", sm: 272 } }}>
+      <Container sx={{ display: "flex", width: { xs: "100%", sm: 336} }}>
         <Paper
           elevation={3}
+          
           sx={{
             padding: 2,
             //maxWidth: 256,
             width: "100%",
+            backgroundColor:'white'
           }}
         >
           {/* doctor's details frame */}
@@ -77,7 +79,7 @@ export const UpcomingAppoinments = () => {
             <Typography variant="body2">Uttarpara, kolkata</Typography>
           </Box>
         </Paper>
-      </Box>
+      </Container>
     </ThemeProvider>
   );
 };

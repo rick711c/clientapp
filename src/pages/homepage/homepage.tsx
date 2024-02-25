@@ -10,23 +10,24 @@ const Homepage = () => {
   const navigate = useNavigate();
   
   return (
-    // <div style={{ width: "100%" }}>
     <ThemeProvider theme={theme}>
-      {/* <Box>
+      <Box>
       <ResponsiveAppBar></ResponsiveAppBar>
       </Box>
-       */}
+      
       <Container
         sx={{
           padding: {xs:2, sm:4},
-          // border: 2,
-          // borderColor: "red",
+          border: 2,
+          borderColor: "red",
         //   boxSizing: "border-box",
           margin:0,
-          height: "100%",
+          height: "100vh",
           width: "100%",
+          
           backgroundColor:theme.palette.background.default
         }}
+        maxWidth={false}
       >
         <Box display={'flex'} flexDirection={'column'} gap={8}>
         <Box display={'flex'} gap={2} flexDirection={'column'}>
@@ -38,10 +39,10 @@ const Homepage = () => {
           <Typography variant="h3">Specialisation</Typography>
           < Specialisation/>
         </Box>
+
         </Box>
       </Container>
     </ThemeProvider>
-    // </div>
   );
 };
 

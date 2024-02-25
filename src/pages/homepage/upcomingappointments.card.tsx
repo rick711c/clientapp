@@ -14,6 +14,8 @@ import { DoctorSVGIcon } from "../../assets/icons/doctor-svg-icon";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
+import { DoctorsdetailsCard } from "../../components/doctorsdetailsCard";
+import { BookingDateTimeAddress } from "../../components/bookingDateTimeAdd";
 
 export const UpcomingAppoinments = () => {
   return (
@@ -30,54 +32,11 @@ export const UpcomingAppoinments = () => {
           }}
         >
           {/* doctor's details frame */}
-          <Box
-            display={"flex"}
-            flexDirection={"row"}
-            alignItems={"center"}
-            marginBottom={2}
-            gap={1}
-          >
-            {/* doctor icon */}
-            <Box sx={{ height: 61, width: 46 }}>
-              <DoctorSVGIcon />
-            </Box>
+         
+          <DoctorsdetailsCard/>
 
-            {/* doctor info text */}
-            <Box>
-              <Typography variant="h5">Dr. Jishnu Bhattaraya</Typography>
-
-              <Typography variant="body2">
-                Neurologist | NRS, Kolkata
-              </Typography>
-            </Box>
-          </Box>
-
-          {/* date and time */}
-          <Box
-            display={"flex"}
-            justifyContent={"flex-start"}
-            alignItems={"center"}
-            gap={2}
-            marginBottom={2}
-          >
-            {/* date icon */}
-            <Box display={"flex"} alignItems={"center"} gap={1}>
-              <CalendarTodayOutlinedIcon />
-              <Typography variant="body2">17/2/23</Typography>
-            </Box>
-
-            {/* timeicon */}
-            <Box display={"flex"} alignItems={"center"} gap={1}>
-              <AccessTimeOutlinedIcon />
-              <Typography variant="body2">09:30 AM</Typography>
-            </Box>
-          </Box>
-
-          {/* clinic address */}
-          <Box display={"flex"} justifyContent={"flex-start"} gap={2}>
-            <PlaceOutlinedIcon />
-            <Typography variant="body2">Uttarpara, kolkata</Typography>
-          </Box>
+          {/* booking date time address */}
+          <BookingDateTimeAddress/>
         </Paper>
       </Box>
     </ThemeProvider>

@@ -24,7 +24,7 @@ const Homepage = () => {
           border: 2,
           borderColor: "red",
           margin: 0,
-          height: "100%",
+          height: {xs: "100%", sm:'100vh'},
           width: "100%",
           justifyContent: "space-between",
           gap: { xs: 4 },
@@ -33,7 +33,13 @@ const Homepage = () => {
         }}
         maxWidth={false}
       >
-        <Box sx={{display:'flex',flexDirection:'column',gap:{xs:4,sm:8}}}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: { xs: 4, sm: 8 },
+          }}
+        >
           <Box display={"flex"} gap={2} flexDirection={"column"}>
             <Typography variant="h3">Upcoming Appointments</Typography>
             <UpcomingAppoinments />

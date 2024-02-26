@@ -8,7 +8,7 @@ export const AppointmentDetails = () => {
     <ThemeProvider theme={theme}>
     <Container sx={{
         display: "flex",
-        flexDirection: { xs: "column", sm: "row" },
+        flexDirection: { xs: "column",md:'row', sm: "row" },
         padding: { xs: 2, sm: 4 },
         border: 2,
         borderColor: "yellow",
@@ -17,8 +17,8 @@ export const AppointmentDetails = () => {
         width: "100%",
         justifyContent: "space-between",
         gap: { xs: 4 },
-
-        backgroundColor: theme.palette.background.default,
+        paddingTop:{ xs:4},
+        backgroundColor: {sm:'white',xs:theme.palette.background.default},
       }}
       maxWidth={false}
       >

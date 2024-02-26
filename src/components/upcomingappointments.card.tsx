@@ -34,8 +34,8 @@ export const UpcomingAppoinments: React.FC<Props> = ({
       <Box
         sx={{
           display: "flex",
-          width: { xs: "100%"},
-          maxWidth:344,
+          width: { xs: "100%",sm:344},
+          // maxWidth:{sm:344},
           borderBottom: bottomborderflag ? 1 : 0,
           borderColor:'#E2E2E2'
         }}

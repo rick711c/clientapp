@@ -28,13 +28,9 @@ export const Appointments = () => {
         }}
         maxWidth={false}
       >
-        <Box
-        sx={{display:'flex',width: '100%'}}
-        >
-          <AllAppointment />
-        </Box>
+        <AllAppointment />
 
-        <Box sx={{display:{sm:'flex',xs:'none'}}}>
+        <Box sx={{ display: { sm: "flex", xs: "none" } }}>
           <AppointmentDetails />
         </Box>
       </Container>

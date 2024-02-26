@@ -45,40 +45,40 @@ export const Reviwes = () => {
             backgroundColor: "white",
           }}
         >
-        <Box
-          display={"flex"}
-          justifyContent={"flex-start"}
-          gap={2}
-          flexWrap={"wrap"}
-        >
-          {reviewerName.map((currvlue, index) => (
-            <Box
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-              padding={1}
-            >
-              {/* reviewr's name and rating */}
+          <Box
+            display={"flex"}
+            justifyContent={"flex-start"}
+            gap={2}
+            flexWrap={"wrap"}
+          >
+            {reviewerName.map((currvlue, index) => (
               <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "flex-start",
-                  width: "100%",
-                  gap: 4,
-                }}
+                display={"flex"}
+                flexDirection={"column"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                padding={1}
               >
-                <Typography variant="h5">{currvlue}</Typography>
-                <Box sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography variant="body2">{rating[index]}</Typography>
-                  <Typography variant="body2">/ 5</Typography>
+                {/* reviewr's name and rating */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    width: "100%",
+                    gap: 4,
+                  }}
+                >
+                  <Typography variant="h5">{currvlue}</Typography>
+                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography variant="body2">{rating[index]}</Typography>
+                    <Typography variant="body2">/ 5</Typography>
+                  </Box>
                 </Box>
+                <Typography variant="body2"> {reviews[index]} </Typography>
               </Box>
-              <Typography variant="body2"> {reviews[index]} </Typography>
-            </Box>
-          ))}
-        </Box>
+            ))}
+          </Box>
         </Paper>
       </Box>
     </ThemeProvider>

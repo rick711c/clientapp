@@ -53,11 +53,15 @@ export const Reviwes = () => {
           >
             {reviewerName.map((currvlue, index) => (
               <Box
-                display={"flex"}
-                flexDirection={"column"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                padding={1}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 1,
+                  borderBottom: 1,
+                  borderColor: "#E2E2E2",
+                }}
               >
                 {/* reviewr's name and rating */}
                 <Box
@@ -71,7 +75,12 @@ export const Reviwes = () => {
                 >
                   <Typography variant="h5">{currvlue}</Typography>
                   <Box sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography variant="body2">{rating[index]}</Typography>
+                    <Typography
+                      variant="body2"
+                      color={theme.palette.success.light}
+                    >
+                      {rating[index]}&nbsp;
+                    </Typography>
                     <Typography variant="body2">/ 5</Typography>
                   </Box>
                 </Box>

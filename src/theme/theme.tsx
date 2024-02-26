@@ -47,7 +47,8 @@ const theme = createTheme({
     
     background:{
      default: "rgb(245, 245, 245)"
-    }
+    },
+    
   },
 });
 

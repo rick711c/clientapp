@@ -6,6 +6,8 @@ import { Appointments } from "./pages/appoinments";
 import { AppointmentDetails } from "./pages/appoinments/appointmentDetails";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./theme/theme";
+import { BokkingForm } from "./pages/bookingpage/bokkingform";
+import { SlotSelection } from "./pages/bookingpage/slotselection";
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="/getotp" element={<OTPpage />} />
         <Route path="/appointments" element={<Appointments />} />
         <Route path="/appointmentdetails" element={<AppointmentDetails />} />
+        <Route path="/booknow" element={<BokkingForm />} />
+        <Route path="/selectslot" element={<SlotSelection />} />
       </Routes>
       </BrowserRouter>
     </div>

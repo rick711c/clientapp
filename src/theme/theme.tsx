@@ -42,7 +42,7 @@ const theme = createTheme({
       main: "#F54749", // Primary color
     },
     secondary: {
-      main: "#03A9F4", // Secondary color
+      main: "#6750A4", // Secondary color
     },
     
     background:{

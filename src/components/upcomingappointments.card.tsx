@@ -34,15 +34,19 @@ export const UpcomingAppoinments: React.FC<Props> = ({
       <Box
         sx={{
           display: "flex",
-          width: { xs: "100%",sm:344},
+          width: { xs: "100%", sm: 344 },
           // maxWidth:{sm:344},
           borderBottom: bottomborderflag ? 1 : 0,
-          borderColor:'#E2E2E2'
+          borderColor: "#E2E2E2",
         }}
       >
         <Paper
           elevation={elevation}
           sx={{
+            transition: "box-shadow 0.3s ease-in-out",
+            "&:hover": {
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)", // Adjust the shadow value as needed
+            },
             padding: 2,
             //maxWidth: 256,
             width: "100%",
@@ -51,7 +55,7 @@ export const UpcomingAppoinments: React.FC<Props> = ({
         >
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {/* doctor's details frame */}
-            <DoctorsdetailsCard flag={iconflag}/>
+            <DoctorsdetailsCard flag={iconflag} />
 
             {/* paitent details */}
             {patientnameflag && (

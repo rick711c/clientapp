@@ -16,11 +16,17 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../theme/theme";
+import { useNavigate } from "react-router-dom";
+import { baseURLs } from "../config/baseurl";
 
 const pages = ["Home", "Appointments", "History", "About Us"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pageRoutes = ["/", "/appointments", "/history", "/about"];
 
+const settings = ["Profile", "Logout"];
+const iconRoutes = ["/login"]
 const ResponsiveAppBar = () => {
+  const navigate = useNavigate();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -35,7 +41,7 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (index: number) => {
     setAnchorElNav(null);
   };
 
@@ -51,142 +57,160 @@ const ResponsiveAppBar = () => {
     const newClickedStates = Array(pages.length).fill(false);
     newClickedStates[index] = true;
     setClickedStates(newClickedStates);
+    navigate(pageRoutes[index]);
   };
 
+  const handleIconClick=(currvalue:string) => {
+    navigate(currvalue)
+  }
+
   return (
-   <ThemeProvider theme={theme}>
-    <AppBar position="static" color="primary">
-      
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-
-          {/* for mobile display */}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-
-          {/* containg the app bar items */}
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "inline-flex", gap: 48 },
-            }}
-          >
-            {pages.map((page, index) => (
-              <Box
-                height={48}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                // mx={2}
-                key={index}
-                borderBottom={clickedStates[index] ? 1 : 0}
-                borderColor="white"
-                onClick={() => handleButtonClick(index)}
+    <ThemeProvider theme={theme}>
+      <AppBar position="static" color="primary">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            {/* for mobile display */}
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
               >
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
-              </Box>
-            ))}
-          </Box>
+                <MenuIcon />
+              </IconButton>
 
-          {/* containg icons (profile, notification, contact us) */}
-          <Box sx={{ flexGrow: 0 }}>
-            <Box
-              display="inline-flex"
-              justifyContent="center"
-              alignItems="center"
-              gap={4}
-              paddingLeft={4}
-              paddingRight={4}
-            >
-              <Tooltip title="Contact Us">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <SupportAgentIcon fontSize="large" />
-                </IconButton>
-              </Tooltip>
-
-              <Tooltip title="Notifications">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <NotificationsIcon fontSize="large" />
-                </IconButton>
-              </Tooltip>
-
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <AccountCircleIcon fontSize="large" />
-                </IconButton>
-              </Tooltip>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                {pages.map((page, index) => (
+                  <MenuItem
+                    key={page}
+                    onClick={() => {
+                      handleButtonClick(index);
+                    }}
+                  >
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
             </Box>
 
-            {/* options after cliking profile button */}
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+            {/* containg the app bar items */}
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "inline-flex", gap: 48 },
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+              {pages.map((page, index) => (
+                <Box
+                  height={48}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  // mx={2}
+                  key={index}
+                  borderBottom={clickedStates[index] ? 1 : 0}
+                  borderColor="white"
+                  onClick={() => handleButtonClick(index)}
+                >
+                  <Button
+                    key={page}
+                    onClick={() => {
+                      handleCloseNavMenu(index);
+                    }}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                </Box>
               ))}
-            </Menu>
+            </Box>
 
-          </Box>
+            {/* containg icons (profile, notification, contact us) */}
+            <Box sx={{ flexGrow: 0 }}>
+              <Box
+                display="inline-flex"
+                justifyContent="center"
+                alignItems="center"
+                gap={4}
+              >
+                <Tooltip title="Contact Us">
+                  <IconButton
+                    style={{ color: theme.palette.background.default }}
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0 }}
+                  >
+                    <SupportAgentIcon fontSize="large" />
+                  </IconButton>
+                </Tooltip>
 
-        </Toolbar>
-      </Container>
-    </AppBar>
+                <Tooltip title="Notifications">
+                  <IconButton
+                    style={{ color: theme.palette.background.default }}
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0 }}
+                  >
+                    <NotificationsIcon fontSize="large" />
+                  </IconButton>
+                </Tooltip>
+
+                <Tooltip title="Open settings">
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0 }}
+                    style={{ color: theme.palette.background.default }}
+                  >
+                    <AccountCircleIcon fontSize="large" />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+
+              {/* options after cliking profile button */}
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
     </ThemeProvider>
   );
 };

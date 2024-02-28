@@ -2,6 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import { Box, Paper, Typography } from "@mui/material";
 import React from "react";
 import theme from "../../theme/theme";
+import { elevation } from "../../theme/styleconstant";
 
 export const Reviwes = () => {
   const reviewerName = [
@@ -37,7 +38,7 @@ export const Reviwes = () => {
         }}
       >
         <Paper
-          elevation={3}
+          elevation={elevation}
           sx={{
             padding: 2,
             //maxWidth: 256,

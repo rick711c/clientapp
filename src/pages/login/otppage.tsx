@@ -17,7 +17,12 @@ import { MaleDoctorConsultataionIcon } from "../../assets/images/male-doctor-con
 import { OTPInput } from "../../components/otpinput";
   
   export const OTPpage = () => {
+
     const navigate = useNavigate();
+    const handleClick = () => {
+      navigate('/');
+    };
+
     return (
       <ThemeProvider theme={theme}>
         
@@ -77,6 +82,7 @@ import { OTPInput } from "../../components/otpinput";
               <OTPInput/>
               {/* get otp button */}
               <Button
+                onClick={handleClick}
                 variant="contained"
                 style={{
                   backgroundColor: theme.palette.primary.main,

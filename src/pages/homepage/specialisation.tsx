@@ -6,6 +6,7 @@ import { BypassIcon } from "../../assets/icons/bypassicon";
 import { CardiologyIcon } from "../../assets/icons/cardiologyicon";
 import { ElectrophysologyIcon } from "../../assets/icons/electrophysologyicon";
 import { RestenosisIcon } from "../../assets/icons/restenosis";
+import { elevation } from "../../theme/styleconstant";
 
 const icons = [
   <AngioplastyIcon />,
@@ -38,7 +39,7 @@ export const Specialisation = () => {
         }}
       >
         <Paper
-          elevation={3}
+          elevation={elevation}
           sx={{
             padding: 2,
             //maxWidth: 256,

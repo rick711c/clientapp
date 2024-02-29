@@ -66,7 +66,7 @@ const ResponsiveAppBar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static" color="primary">
+      <AppBar position="fixed" color="primary">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* for mobile display */}

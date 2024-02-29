@@ -13,7 +13,11 @@ import theme from "../../theme/theme";
 import AddIcon from "@mui/icons-material/Add";
 import { SelectDate, SelectTime } from "./slotselection";
 
-export const BokkingForm = () => {
+interface BookingFormProps {
+  onclick: () => void;
+}
+
+export const BokkingForm:React.FC<BookingFormProps> =  ({onclick}) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.only("xs"));
   const [showForm,setShowForm] = useState(true);
   const [showDatepicker,setShowDatepicker] =useState(false);
@@ -21,7 +25,7 @@ export const BokkingForm = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container
+      {/* <Container
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -33,7 +37,7 @@ export const BokkingForm = () => {
           marginTop: 4,
           marginBottom: 4,
         }}
-      >
+      > */}
         {/* booking form */}
         <Paper
           elevation={isSmallScreen ? 0 : 3}
@@ -125,14 +129,14 @@ export const BokkingForm = () => {
         </Paper>
 
         {/* next button */}
-        <Fab variant="extended" color="secondary" onClick={() => {}} style={{ width: '200px' }}>
+        <Fab variant="extended" color="secondary" onClick={onclick} style={{ width: '200px' }}>
           Continue
         </Fab>
 
-        <SelectDate onClickHandler={setShowDatepicker}/>
+        {/* <SelectDate onClickHandler={setShowDatepicker}/>
 
-        <SelectTime onClickHandler={setShowTimepicker}/>
-      </Container>
+        <SelectTime onClickHandler={setShowTimepicker}/> */}
+      {/* </Container> */}
 
 
     </ThemeProvider>

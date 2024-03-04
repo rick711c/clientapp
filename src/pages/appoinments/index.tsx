@@ -30,7 +30,7 @@ export const Appointments = () => {
             flex: "0 0 auto",
             position: "sticky",
             top: 0,
-            maxHeight: "100vh", // Adjust as per your requirement, considering margin and padding
+            maxHeight: "100vh",
             overflowY: "auto",
           }}
         >

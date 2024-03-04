@@ -6,8 +6,8 @@ import theme from "../../theme/theme";
 import { useNavigate } from "react-router-dom";
 
 export const AllAppointment = () => {
-  const isXsScreen = useMediaQuery(theme.breakpoints.between('xs','sm'));
-  console.log(isXsScreen)
+  const isXsScreen = useMediaQuery(theme.breakpoints.between("xs", "sm"));
+  console.log(isXsScreen);
   const navigate = useNavigate();
   const showDetails = () => {
     if (isXsScreen) {
@@ -18,7 +18,15 @@ export const AllAppointment = () => {
   const allAppointments = [0, 1, 2, 3, 4, 5];
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex", flexDirection: "column", border: 1 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          border: 1,
+          paddingTop: 3,
+          alignItems: "center",
+        }}
+      >
         {allAppointments.map((index) => (
           <Box sx={{ cursor: "pointer" }} onClick={showDetails}>
             <UpcomingAppoinments

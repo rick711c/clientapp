@@ -8,9 +8,6 @@ import { AppointmentDetails } from "./appointmentDetails";
 export const Appointments = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Box>
-        <ResponsiveAppBar></ResponsiveAppBar>
-      </Box>
       <Container
         sx={{
           display: "flex",
@@ -19,18 +16,37 @@ export const Appointments = () => {
           border: 2,
           borderColor: "red",
           margin: 0,
-          height: "100%",
+          height: "auto",
           width: "100%",
           justifyContent: "space-between",
           gap: { xs: 4 },
-
+          overflowY: "hidden",
           backgroundColor: theme.palette.background.default,
         }}
         maxWidth={false}
       >
-        <AllAppointment />
+        <Box
+          sx={{
+            flex: "0 0 auto",
+            position: "sticky",
+            top: 0,
+            maxHeight: "100vh", // Adjust as per your requirement, considering margin and padding
+            overflowY: "auto",
+          }}
+        >
+          {" "}
+          <AllAppointment />
+        </Box>
 
-        <Box sx={{ display: { sm: "flex", xs: "none" } }}>
+        <Box
+          sx={{
+            flex: "0 0 auto",
+            position: "sticky",
+            top: 0,
+            maxHeight: "100vh", // Adjust as per your requirement, considering margin and padding
+            overflowY: "hidden",
+          }}
+        >
           <AppointmentDetails />
         </Box>
       </Container>

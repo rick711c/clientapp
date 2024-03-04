@@ -8,22 +8,27 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "./theme/theme";
 import { BokkingForm } from "./pages/bookingpage/bokkingform";
 import { Bookingpage } from "./pages/bookingpage/bookingpage";
+import ResponsiveAppBar from "./components/appbar";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-    <div className="App">
-      <BrowserRouter>
-      <Routes>
-        <Route path="/" index element={<Homepage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/getotp" element={<OTPpage />} />
-        <Route path="/appointments" element={<Appointments />} />
-        <Route path="/appointmentdetails" element={<AppointmentDetails />} />
-        <Route path="/booknow" element={<Bookingpage />} />
-      </Routes>
-      </BrowserRouter>
-    </div>
+      <div className="App">
+        <BrowserRouter>
+          <ResponsiveAppBar />
+          <Routes>
+            <Route path="/" index element={<Homepage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/getotp" element={<OTPpage />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route
+              path="/appointmentdetails"
+              element={<AppointmentDetails />}
+            />
+            <Route path="/booknow" element={<Bookingpage />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </ThemeProvider>
   );
 };

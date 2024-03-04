@@ -11,12 +11,12 @@ import AddIcon from "@mui/icons-material/Add";
 import { elevation } from "../../theme/styleconstant";
 
 const routePaths = [
-  '/',
-  '/login',
-  '/getotp',
-  '/appointments',
-  '/appointmentdetails',
-  '/booknow',
+  "/",
+  "/login",
+  "/getotp",
+  "/appointments",
+  "/appointmentdetails",
+  "/booknow",
 ];
 
 const Homepage = () => {
@@ -24,9 +24,7 @@ const Homepage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box>
-        <ResponsiveAppBar></ResponsiveAppBar>
-      </Box>
+      <Box>{/* <ResponsiveAppBar></ResponsiveAppBar> */}</Box>
       <Container
         sx={{
           display: "flex",
@@ -39,8 +37,8 @@ const Homepage = () => {
           width: "100%",
           justifyContent: "space-between",
           gap: { xs: 4 },
-          position:'relative',
-          minHeight: '100vh',
+          position: "relative",
+          minHeight: "100vh",
           backgroundColor: theme.palette.background.default,
         }}
         maxWidth={false}
@@ -52,10 +50,14 @@ const Homepage = () => {
             gap: { xs: 4, sm: 8 },
           }}
         >
-          <Box display={"flex"} gap={2} flexDirection={"column"}
-          onClick={()=>{navigate(routePaths[4])}}
+          <Box
+            display={"flex"}
+            gap={2}
+            flexDirection={"column"}
+            onClick={() => {
+              navigate(routePaths[4]);
+            }}
           >
-            
             <Typography variant="h3">Upcoming Appointments</Typography>
             <UpcomingAppoinments
               iconflag={true}
@@ -76,10 +78,15 @@ const Homepage = () => {
           <Reviwes />
         </Box>
 
-          {/* floating action button */}
-        <div style={{ position: "fixed", bottom: '10%', right: '10%'}}>
-          <Fab variant="extended" color="secondary" onClick={()=>{navigate(routePaths[5])}} >
-            
+        {/* floating action button */}
+        <div style={{ position: "fixed", bottom: "10%", right: "10%" }}>
+          <Fab
+            variant="extended"
+            color="secondary"
+            onClick={() => {
+              navigate(routePaths[5]);
+            }}
+          >
             <AddIcon sx={{ mr: 1 }} />
             Book Now
           </Fab>

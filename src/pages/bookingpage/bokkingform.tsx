@@ -12,16 +12,36 @@ import React, { useState } from "react";
 import theme from "../../theme/theme";
 import AddIcon from "@mui/icons-material/Add";
 import { SelectDate, SelectTime } from "./slotselection";
+import { useDispatch } from "react-redux";
+import {
+  dateSlotRequested,
+  timeSlotRequested,
+  updateAppoinmentForm,
+} from "../../redux/silces/userdata.slice";
 
 interface BookingFormProps {
   onclick: () => void;
 }
 
-export const BokkingForm:React.FC<BookingFormProps> =  ({onclick}) => {
+export const BokkingForm: React.FC<BookingFormProps> = ({ onclick }) => {
+  const dispatch = useDispatch();
   const isSmallScreen = useMediaQuery(theme.breakpoints.only("xs"));
-  const [showForm,setShowForm] = useState(true);
-  const [showDatepicker,setShowDatepicker] =useState(false);
-  const [showTimepicker,setShowTimepicker] = useState(false);
+  const [showForm, setShowForm] = useState(true);
+  const [showDatepicker, setShowDatepicker] = useState(false);
+  const [showTimepicker, setShowTimepicker] = useState(false);
+
+  const [appoinmentForm, setappoinmentForm] = useState<any>({});
+  const handleChange = (event: any) => {
+    const { name, value } = event.target;
+    setappoinmentForm({ ...appoinmentForm, [name]: value });
+  };
+
+  const handleButtonClick = () => {
+    dispatch(updateAppoinmentForm(appoinmentForm));
+    dispatch(dateSlotRequested());
+    dispatch(timeSlotRequested());
+    onclick();
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -38,107 +58,119 @@ export const BokkingForm:React.FC<BookingFormProps> =  ({onclick}) => {
           marginBottom: 4,
         }}
       > */}
-        {/* booking form */}
-        <Paper
-          elevation={isSmallScreen ? 0 : 3}
-          sx={{ display: { sm: "inline-block", xs: "flex" } }}
+      {/* booking form */}
+      <Paper
+        elevation={isSmallScreen ? 0 : 3}
+        sx={{ display: { sm: "inline-block", xs: "flex" } }}
+      >
+        <Container
+          sx={{
+            display: "flex",
+            width: { sm: 416, xs: "100%" },
+            //height: { xs: "100vh" },
+            justifyContent: { sm: "center", xs: "flex-start" },
+            padding: { sm: 4, xs: 2 },
+            flexDirection: "column",
+            gap: 4,
+            // border: 1,
+            elevation: 2,
+            //backgroundColor:theme.palette.background.default
+          }}
         >
-          <Container
+          <Box
             sx={{
               display: "flex",
-              width: { sm: 416, xs: "100%" },
-              //height: { xs: "100vh" },
-              justifyContent: { sm: "center", xs: "flex-start" },
-              padding: { sm: 4, xs: 2 },
-              flexDirection: "column",
-              gap: 4,
-              // border: 1,
-              elevation: 2,
-              //backgroundColor:theme.palette.background.default
+              justifyContent: "center",
             }}
           >
-            <Box
+            <Typography variant="h5">Book Appoiment</Typography>
+          </Box>
+          <TextField
+            required
+            id="outlined-required"
+            label="Name"
+            inputProps={{ inputMode: "text" }}
+            name="patientName"
+            onChange={handleChange}
+          />
+
+          <TextField
+            required
+            id="outlined-required"
+            label="Age"
+            inputProps={{ inputMode: "text" }}
+            name="age"
+            onChange={handleChange}
+          />
+
+          <TextField
+            required
+            id="outlined-required"
+            label="Gender"
+            inputProps={{ inputMode: "text" }}
+            name="gender"
+            onChange={handleChange}
+          />
+          <TextField
+            required
+            id="outlined-required"
+            label="Phone number"
+            inputProps={{ inputMode: "numeric" }}
+            name="patientPhone"
+            onChange={handleChange}
+          />
+
+          {/* problem */}
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              flexDirection: "column",
+              width: "100%",
+              //   border: 1,
+            }}
+          >
+            <Box>
+              <Typography variant="h6">Describe Problem</Typography>
+            </Box>
+
+            <Paper
+              elevation={0}
               sx={{
-                display: "flex",
-                justifyContent: "center",
+                padding: 2,
+                //maxWidth: 256,
+                maxWidth: "100%",
+                backgroundColor: "white",
+                border: 1,
+                borderColor: "#E2E2E2",
               }}
             >
-              <Typography variant="h5">Book Appoiment</Typography>
-            </Box>
-            <TextField
-              required
-              id="outlined-required"
-              label="Name"
-              inputProps={{ inputMode: "text" }}
-            />
+              <TextField
+                name="problem"
+                placeholder="Describe your problem briefly"
+                multiline
+                onChange={handleChange}
+                fullWidth
+              ></TextField>
+            </Paper>
+          </Box>
+        </Container>
+      </Paper>
 
-            <TextField
-              required
-              id="outlined-required"
-              label="Age"
-              inputProps={{ inputMode: "text" }}
-            />
+      {/* next button */}
+      <Fab
+        variant="extended"
+        color="secondary"
+        onClick={handleButtonClick}
+        style={{ width: "200px" }}
+      >
+        Continue
+      </Fab>
 
-            <TextField
-              required
-              id="outlined-required"
-              label="Gender"
-              inputProps={{ inputMode: "text" }}
-            />
-            <TextField
-              required
-              id="outlined-required"
-              label="Phone number"
-              inputProps={{ inputMode: "numeric" }}
-            />
-
-            {/* problem */}
-            <Box
-              sx={{
-                display: "flex",
-                gap: 2,
-                flexDirection: "column",
-                width: "100%",
-                //   border: 1,
-              }}
-            >
-              <Box>
-                <Typography variant="h6">Describe Problem</Typography>
-              </Box>
-
-              <Paper
-                elevation={0}
-                sx={{
-                  padding: 2,
-                  //maxWidth: 256,
-                  maxWidth: "100%",
-                  backgroundColor: "white",
-                  border: 1,
-                  borderColor: "#E2E2E2",
-                }}
-              >
-                <Typography variant="body2" sx={{ overflowWrap: "break-word" }}>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                  The point of using Lorem Ipsum is that it has a more-or-less
-                  normal distribution of letters,
-                </Typography>
-              </Paper>
-            </Box>
-          </Container>
-        </Paper>
-
-        {/* next button */}
-        <Fab variant="extended" color="secondary" onClick={onclick} style={{ width: '200px' }}>
-          Continue
-        </Fab>
-
-        {/* <SelectDate onClickHandler={setShowDatepicker}/>
+      {/* <SelectDate onClickHandler={setShowDatepicker}/>
 
         <SelectTime onClickHandler={setShowTimepicker}/> */}
       {/* </Container> */}
-
-
     </ThemeProvider>
   );
 };

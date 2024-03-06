@@ -199,7 +199,13 @@ export const userDataSlice = createSlice({
     updateAppoinmentForm: (state: UserData, action: PayloadAction<any>) => {
       return {
         ...state,
-        appoinmentForm: { ...action.payload },
+        appoinmentForm: { ...action.payload, ...state.appoinmentForm },
+      };
+    },
+    addAppoinmentInListRequested: (state: UserData) => {
+      return {
+        ...state,
+        appoinmentForm: { ...state.appoinmentForm, loading: true },
       };
     },
     addAppoinmentInListSuccess: (
@@ -235,6 +241,7 @@ export const {
   getAppoinmentDetailsRequested,
   getAppoinmentDetailsFailure,
   addAppoinmentInListSuccess,
+  addAppoinmentInListRequested,
   updateAppoinmentForm,
 } = userDataSlice.actions;
 

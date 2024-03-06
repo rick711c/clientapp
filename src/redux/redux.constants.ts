@@ -88,7 +88,7 @@ export interface ITimeslots {
 
 export interface IAppoinmentForm {
   patientPhone?: string;
-
+  loading: boolean;
   patientName?: string;
   clinicAddress?: string;
   appoinmentTime?: string;
@@ -128,6 +128,7 @@ export const UserDataInitialState: UserData = {
   dateSlots: { data: [], loading: false, error: null },
   timeSlots: { data: [], loading: false, error: null },
   currentAppoinmentDetails: { data: null, loading: false, error: null },
+  appoinmentForm: { loading: false },
 };
 
 export const appointments: IAppoinment[] = [

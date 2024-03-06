@@ -1,6 +1,7 @@
-import { put, takeEvery, takeLatest } from "redux-saga/effects";
+import { put, select, takeEvery, takeLatest } from "redux-saga/effects";
 import { ActionType } from "typesafe-actions";
 import {
+  addAppoinmentInListRequested,
   addAppoinmentInListSuccess,
   appoinmentListFailure,
   appoinmentListRequested,
@@ -17,7 +18,6 @@ import {
   upcomingAppoinmentFailure,
   upcomingAppoinmentRequested,
   upcomingAppoinmentSucess,
-  updateAppoinmentForm,
 } from "../silces/userdata.slice";
 import {
   IAppoinment,
@@ -25,6 +25,8 @@ import {
   dateSlots,
   timeSlots,
 } from "../redux.constants";
+
+import { store } from "..";
 
 function* fetchUpcomingAppoinment(
   action: ActionType<typeof upcomingAppoinmentRequested>
@@ -77,12 +79,29 @@ function* fetchAppoinmentDetails(
 }
 
 function* addAppoinmentInListSaga(
-  action: ActionType<typeof addAppoinmentInListSuccess>
+  action: ActionType<typeof addAppoinmentInListRequested>
 ) {
+  const {
+    userdata: { appoinmentForm },
+  } = store.getState();
+  const {
+    userdata: {
+      appoinmentList: { data },
+    },
+  } = store.getState();
   try {
     // do necessary api calls here
-
-    yield put(addAppoinmentInListSuccess(action.payload));
+    const appData: IAppoinment = {
+      patientName: appoinmentForm?.patientName ?? "",
+      doctorName: "Dr. Debabrata Bera",
+      clinicAddress: "Somewhere on earth",
+      clinicPhone: appoinmentForm?.patientPhone ?? "",
+      appoinmentDate: appoinmentForm?.appoinmentDate ?? "",
+      appoinmentTime: appoinmentForm?.appoinmentTime ?? "",
+      problem: appoinmentForm?.problem,
+      appoinmentId: (data.length + 1).toString(),
+    };
+    yield put(addAppoinmentInListSuccess(appData));
   } catch (error) {
     yield put(getAppoinmentDetailsFailure(error));
   }
@@ -109,5 +128,5 @@ export function* watchFetchAppoinmentDetails() {
 }
 
 export function* watchAddAppoinmentinList() {
-  yield takeLatest(addAppoinmentInListSuccess.type, addAppoinmentInListSaga);
+  yield takeLatest(addAppoinmentInListRequested.type, addAppoinmentInListSaga);
 }

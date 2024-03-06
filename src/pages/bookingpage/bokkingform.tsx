@@ -12,12 +12,13 @@ import React, { useState } from "react";
 import theme from "../../theme/theme";
 import AddIcon from "@mui/icons-material/Add";
 import { SelectDate, SelectTime } from "./slotselection";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   dateSlotRequested,
   timeSlotRequested,
   updateAppoinmentForm,
 } from "../../redux/silces/userdata.slice";
+import { RootState } from "../../redux";
 
 interface BookingFormProps {
   onclick: () => void;
@@ -25,6 +26,9 @@ interface BookingFormProps {
 
 export const BokkingForm: React.FC<BookingFormProps> = ({ onclick }) => {
   const dispatch = useDispatch();
+  const loading = useSelector(
+    (state: RootState) => state.userdata.timeSlots.loading
+  );
   const isSmallScreen = useMediaQuery(theme.breakpoints.only("xs"));
   const [showForm, setShowForm] = useState(true);
   const [showDatepicker, setShowDatepicker] = useState(false);
@@ -39,7 +43,7 @@ export const BokkingForm: React.FC<BookingFormProps> = ({ onclick }) => {
   const handleButtonClick = () => {
     dispatch(updateAppoinmentForm(appoinmentForm));
     dispatch(dateSlotRequested());
-    dispatch(timeSlotRequested());
+
     onclick();
   };
 
@@ -163,6 +167,7 @@ export const BokkingForm: React.FC<BookingFormProps> = ({ onclick }) => {
         color="secondary"
         onClick={handleButtonClick}
         style={{ width: "200px" }}
+        disabled={loading}
       >
         Continue
       </Fab>

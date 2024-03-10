@@ -196,10 +196,15 @@ export const userDataSlice = createSlice({
       };
     },
 
+   /**
+    * @pupose :- it will update the appoinmentForm details of upcomingappointment object of userdata in redux;
+    * @param state : this tpye of data is present in redux which need to updated 
+    * @param action : payloadaction has the new datas for updating userdata
+    */
     updateAppoinmentForm: (state: UserData, action: PayloadAction<any>) => {
       return {
         ...state,
-        appoinmentForm: { ...action.payload, ...state.appoinmentForm },
+        appoinmentForm: {  ...state.appoinmentForm, ...action.payload },
       };
     },
     addAppoinmentInListRequested: (state: UserData) => {

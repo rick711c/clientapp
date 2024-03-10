@@ -7,8 +7,9 @@ import { AppointmentDetails } from "./pages/appoinments/appointmentDetails";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./theme/theme";
 import { BokkingForm } from "./pages/bookingpage/bokkingform";
-import { Bookingpage } from "./pages/bookingpage/bookingpage";
 import ResponsiveAppBar from "./components/appbar";
+import { SelectDate } from "./pages/bookingpage/dateselector";
+import { SelectTime } from "./pages/bookingpage/timeselector";
 
 const App = () => {
   return (
@@ -25,7 +26,10 @@ const App = () => {
               path="/appointmentdetails"
               element={<AppointmentDetails />}
             />
-            <Route path="/booknow" element={<Bookingpage />} />
+            <Route path="/booknow" element={<BokkingForm />} />
+            <Route path="/booknow/selectedate" element={<SelectDate />} />
+            <Route path="/booknow/selecttime" element={<SelectTime />} />
+
           </Routes>
         </BrowserRouter>
       </div>

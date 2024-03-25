@@ -34,7 +34,7 @@ export const BokkingForm: React.FC<BookingFormProps> = ({ onclick }) => {
   const [showDatepicker, setShowDatepicker] = useState(false);
   const [showTimepicker, setShowTimepicker] = useState(false);
 
-  const [appoinmentForm, setappoinmentForm] = useState<any>({});
+  const [appoinmentForm, setappoinmentForm] = useState<any>({}); // { key1:string
   const handleChange = (event: any) => {
     const { name, value } = event.target;
     setappoinmentForm({ ...appoinmentForm, [name]: value });

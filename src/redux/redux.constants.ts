@@ -5,6 +5,7 @@ export interface IAuthState {
 }
 
 export interface IUserDetails {
+  userID: string;
   userName: string;
   fullname: string;
   email?: string;
@@ -12,6 +13,7 @@ export interface IUserDetails {
 }
 
 export const IUserDetailsInitialState: IUserDetails = {
+  userID: "",
   userName: "",
   fullname: "",
   email: "",

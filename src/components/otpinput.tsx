@@ -1,9 +1,8 @@
 import { Box, Grid, TextField } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 
-export const OTPInput = () => {
-  const [otp, setOtp] = useState(["", "", "", ""]);
-
+export const OTPInput = (props: any) => {
+  const { otp, setOtp } = props;
   const handleChange = (index: number, value: string) => {
     const newOtp = [...otp];
     newOtp[index] = value;

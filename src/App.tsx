@@ -9,23 +9,53 @@ import theme from "./theme/theme";
 import { BokkingForm } from "./pages/bookingpage/bokkingform";
 import { Bookingpage } from "./pages/bookingpage/bookingpage";
 import ResponsiveAppBar from "./components/appbar";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux";
+import Protected from "./components/protectedRoute";
 
 const App = () => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <BrowserRouter>
-          <ResponsiveAppBar />
+          {isAuthenticated ? <ResponsiveAppBar /> : null}
           <Routes>
-            <Route path="/" index element={<Homepage />} />
+            <Route
+              path="/"
+              index
+              element={
+                <Protected isAuthenticated={isAuthenticated}>
+                  <Homepage />
+                </Protected>
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/getotp" element={<OTPpage />} />
-            <Route path="/appointments" element={<Appointments />} />
+            <Route
+              path="/appointments"
+              element={
+                <Protected isAuthenticated={isAuthenticated}>
+                  <Appointments />
+                </Protected>
+              }
+            />
             <Route
               path="/appointmentdetails"
-              element={<AppointmentDetails />}
+              element={
+                <Protected isAuthenticated={isAuthenticated}>
+                  <AppointmentDetails />
+                </Protected>
+              }
             />
-            <Route path="/booknow" element={<Bookingpage />} />
+            <Route
+              path="/booknow"
+              element={
+                <Protected isAuthenticated={isAuthenticated}>
+                  <Bookingpage />
+                </Protected>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </div>

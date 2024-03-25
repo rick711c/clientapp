@@ -18,14 +18,18 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "../theme/theme";
 import { useNavigate } from "react-router-dom";
 import { baseURLs } from "../config/baseurl";
+import useAuthService from "../hooks/useAuthService";
+import { log } from "console";
+import { Logout } from "@mui/icons-material";
 
 const pages = ["Home", "Appointments", "History", "About Us"];
 const pageRoutes = ["/", "/appointments", "/history", "/about"];
 
 const settings = ["Profile", "Logout"];
-const iconRoutes = ["/login"]
+const iconRoutes = ["/login"];
 const ResponsiveAppBar = () => {
   const navigate = useNavigate();
+  const { handleLogOut } = useAuthService();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -60,9 +64,9 @@ const ResponsiveAppBar = () => {
     navigate(pageRoutes[index]);
   };
 
-  const handleIconClick=(currvalue:string) => {
-    navigate(currvalue)
-  }
+  const handleIconClick = (currvalue: string) => {
+    navigate(currvalue);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -202,7 +206,12 @@ const ResponsiveAppBar = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <MenuItem
+                    key={setting}
+                    onClick={
+                      setting !== "Logout" ? handleCloseUserMenu : handleLogOut
+                    }
+                  >
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}

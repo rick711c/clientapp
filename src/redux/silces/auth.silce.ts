@@ -1,8 +1,8 @@
-import {type PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {IAuthState, IAuthStateInitialState} from '../redux.constants';
+import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IAuthState, IAuthStateInitialState } from "../redux.constants";
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: IAuthStateInitialState,
 
   reducers: {
@@ -16,9 +16,10 @@ export const authSlice = createSlice({
       return {
         ...state,
         userDetails: {
-          userName: '',
-          fullname: '',
-          email: '',
+          userID: "",
+          userName: "",
+          fullname: "",
+          email: "",
           phoneNumber: action.payload.data.phonenumber,
         },
         isLoading: false,
@@ -43,6 +44,7 @@ export const authSlice = createSlice({
         ...state,
         isAuthenticated: true,
         isLoading: false,
+        userDetails: { ...state.userDetails, ...action.payload },
       };
     },
     authFailed: (state: IAuthState, action: PayloadAction<any>) => {

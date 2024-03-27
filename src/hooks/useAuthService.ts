@@ -15,23 +15,28 @@ import { appointments, dateSlots, IAuthState, IUserDetails, timeSlots } from "..
 import { login, requestOTP } from "../services/auth/auth.service";
 
 export interface sendOTPPayload {
-  phoneNumber: string;
+  phoneNo: string;
   otherDetails?: any;
 }
+
+
 const useAuthService = () => {
+  
   const dispatch = useDispatch();
   const value = useSelector((state: RootState) => state.userdata);
+
   const handleSendOTP = async (payload: sendOTPPayload, navigation: any) => {
     dispatch(otpRequested());
     try {
       const response = await requestOTP(payload)
-      const data = { phonenumber: payload.phoneNumber };
+      const data = { phonenumber: payload.phoneNo };
       dispatch(otpSuccess({ data }));
       navigation("/getotp");
     } catch (error: any) {
       dispatch(otpFailed(error));
     }
   };
+
 
   const handleLogIn = async (payload: any, navigation: any) => {
     dispatch(authRequested());
@@ -50,6 +55,7 @@ const useAuthService = () => {
       dispatch(authFailed(error));
     }
   };
+
 
   const handleLogOut = () => {
     dispatch(logOut());

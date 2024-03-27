@@ -25,10 +25,14 @@ export const OTPpage = () => {
     (state: RootState) => state.auth.userDetails?.phoneNumber
   );
   const [otp, setOtp] = useState<string>("");
+
   const { handleLogIn } = useAuthService();
+
   const navigate = useNavigate();
+
   const handleClick = () => {
-    handleLogIn(otp, navigate);
+    // let newotp = otp.join("")
+    handleLogIn({otp:otp.toString()}, navigate);
   };
 
   return (
@@ -85,7 +89,7 @@ export const OTPpage = () => {
               </Typography>
             </Box>
 
-            {/* mobile no text field */}
+            {/* otp text field */}
             <OTPInput otp={otp} setOtp={setOtp} />
             {/* get otp button */}
             <Button

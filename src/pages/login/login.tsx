@@ -15,12 +15,14 @@ import theme from "../../theme/theme";
 import { LoginPageDoctorIcon } from "../../assets/images/male-doctor-svg";
 import useAuthService from "../../hooks/useAuthService";
 import { useState } from "react";
+
 export const Login = () => {
+  
   const { handleSendOTP } = useAuthService();
   const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const handleClick = () => {
-    handleSendOTP({ phoneNumber: phoneNumber }, navigate);
+    handleSendOTP({ phoneNo: phoneNumber }, navigate);
   };
 
   return (

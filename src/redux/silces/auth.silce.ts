@@ -1,5 +1,9 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IAuthState, IAuthStateInitialState } from "../redux.constants";
+import {
+  IAuthState,
+  IAuthStateInitialState,
+  IUserDetails,
+} from "../redux.constants";
 
 export const authSlice = createSlice({
   name: "auth",
@@ -21,7 +25,7 @@ export const authSlice = createSlice({
           fullname: "",
           email: "",
           phoneNo: action.payload.data.phonenumber,
-          accessToken: action.payload.data.accessToken,
+          accessToken: null,
         },
         isLoading: false,
       };
@@ -32,7 +36,7 @@ export const authSlice = createSlice({
         isLoading: false,
         userDetails: null,
         errormessege: action.payload,
-        accessToken:null,
+        accessToken: null,
       };
     },
     authRequested: (state: IAuthState) => {
@@ -41,12 +45,12 @@ export const authSlice = createSlice({
         isLoading: true,
       };
     },
-    authSuccess: (state: IAuthState, action: PayloadAction<any>) => {
+    authSuccess: (state: IAuthState, action: PayloadAction<IUserDetails>) => {
       return {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        userDetails: { ...state.userDetails, ...action.payload },
+        userDetails: { ...action.payload, ...state.userDetails },
       };
     },
     authFailed: (state: IAuthState, action: PayloadAction<any>) => {
@@ -55,7 +59,7 @@ export const authSlice = createSlice({
         isLoading: false,
         userDetails: null,
         errormessege: action.payload,
-        accessToken:null,
+        accessToken: null,
       };
     },
 

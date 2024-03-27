@@ -59,12 +59,30 @@ const App = () => {
                 </Protected>
               }
             /> */}
-
-            
-            <Route path="/booknow" element={<BookingForm />} />
-            <Route path="/booknow/selectedate" element={<SelectDate />} />
-            <Route path="/booknow/selecttime" element={<SelectTime />} />
-
+            <Route
+              path="/booknow"
+              element={
+                <Protected isAuthenticated={isAuthenticated}>
+                  <BookingForm />
+                </Protected>
+              }
+            />
+            <Route
+              path="/booknow/selectedate"
+              element={
+                <Protected isAuthenticated={isAuthenticated}>
+                  <SelectDate />
+                </Protected>
+              }
+            />
+            <Route
+              path="/booknow/selectetime"
+              element={
+                <Protected isAuthenticated={isAuthenticated}>
+                  <SelectTime />
+                </Protected>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </div>

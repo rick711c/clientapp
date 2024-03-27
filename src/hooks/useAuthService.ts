@@ -9,9 +9,14 @@ import {
   otpSuccess,
 } from "../redux/silces/auth.silce";
 
-
 import { RootState } from "../redux";
-import { appointments, dateSlots, IAuthState, IUserDetails, timeSlots } from "../redux/redux.constants";
+import {
+  appointments,
+  dateSlots,
+  IAuthState,
+  IUserDetails,
+  timeSlots,
+} from "../redux/redux.constants";
 import { login, requestOTP } from "../services/auth/auth.service";
 
 export interface sendOTPPayload {
@@ -19,16 +24,14 @@ export interface sendOTPPayload {
   otherDetails?: any;
 }
 
-
 const useAuthService = () => {
-
   const dispatch = useDispatch();
   const value = useSelector((state: RootState) => state.userdata);
 
   const handleSendOTP = async (payload: sendOTPPayload, navigation: any) => {
     dispatch(otpRequested());
     try {
-      const response = await requestOTP(payload)
+      const response = await requestOTP(payload);
       const data = { phonenumber: payload.phoneNo };
       dispatch(otpSuccess({ data }));
       navigation("/getotp");
@@ -37,19 +40,19 @@ const useAuthService = () => {
     }
   };
 
-
   const handleLogIn = async (payload: any, navigation: any) => {
     dispatch(authRequested());
     try {
-      let response:any = await login(payload);
-     response = response.data;
+      let response: any = await login(payload);
+      response = response.data;
       console.log(response);
-      const userObject:IUserDetails = {
-        userID:response.userId??'', 
-        userName: response.username??'',
-        fullname: response.firstName+' '+response.lastName,
-        accessToken: response.accessToken
-      }
+      const userObject: IUserDetails = {
+        userID: response.userId ?? "",
+        userName: response.username ?? "",
+        fullname: response.firstName + " " + response.lastName,
+        accessToken: response.accessToken,
+      };
+
       dispatch(authSuccess(userObject));
 
       navigation("/");
@@ -57,7 +60,6 @@ const useAuthService = () => {
       dispatch(authFailed(error));
     }
   };
-
 
   const handleLogOut = () => {
     dispatch(logOut());

@@ -13,14 +13,16 @@ import {
 import { useNavigate } from "react-router-dom";
 import theme from "../../theme/theme";
 import { LoginPageDoctorIcon } from "../../assets/images/male-doctor-svg";
-
+import useAuthService from "../../hooks/useAuthService";
+import { useState } from "react";
 export const Login = () => {
-
+  const { handleSendOTP } = useAuthService();
+  const navigate = useNavigate();
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
   const handleClick = () => {
-    navigate('/getotp');
+    handleSendOTP({ phoneNumber: phoneNumber }, navigate);
   };
 
-  const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -39,7 +41,7 @@ export const Login = () => {
             height: { xs: "100%", sm: 416 },
             width: { xs: "100%", sm: 604 },
             justifyContent: { xs: "flex-start", sm: "space-around" }, // Removed curly braces
-           
+
             alignItems: "center",
             display: "flex",
             flexDirection: { xs: "column", sm: "row" }, // "row" instead of "Row"
@@ -75,10 +77,14 @@ export const Login = () => {
 
             {/* mobile no text field */}
             <TextField
+              value={phoneNumber}
               required
               id="outlined-required"
               label="Mobile No"
               placeholder="Mobile No"
+              onChange={(e: any) => {
+                setPhoneNumber(e.target.value);
+              }}
             />
 
             {/* get otp button */}
@@ -95,7 +101,6 @@ export const Login = () => {
             </Button>
           </Box>
         </Box>
-
       </Box>
     </ThemeProvider>
   );

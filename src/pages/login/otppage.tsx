@@ -21,8 +21,8 @@ import { RootState } from "../../redux";
 import useAuthService from "../../hooks/useAuthService";
 
 export const OTPpage = () => {
-  const phoneNumber = useSelector(
-    (state: RootState) => state.auth.userDetails?.phoneNumber
+  const phoneNo = useSelector(
+    (state: RootState) => state.auth.userDetails?.phoneNo
   );
   const [otp, setOtp] = useState<string>("");
 
@@ -31,8 +31,11 @@ export const OTPpage = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // let newotp = otp.join("")
-    handleLogIn({otp:otp.toString()}, navigate);
+    const payload = {
+      otp: otp.toString(),
+      phoneNo: phoneNo,
+    };
+    handleLogIn(payload, navigate);
   };
 
   return (
@@ -85,7 +88,7 @@ export const OTPpage = () => {
             <Box overflow={"auto"}>
               <Typography variant="h2">OTP Verification</Typography>
               <Typography variant="body1">
-                {`We have sent you a verification code in your mobile no ${phoneNumber}`}
+                {`We have sent you a verification code in your mobile no ${phoneNo}`}
               </Typography>
             </Box>
 

@@ -21,7 +21,7 @@ export interface sendOTPPayload {
 
 
 const useAuthService = () => {
-  
+
   const dispatch = useDispatch();
   const value = useSelector((state: RootState) => state.userdata);
 
@@ -41,14 +41,16 @@ const useAuthService = () => {
   const handleLogIn = async (payload: any, navigation: any) => {
     dispatch(authRequested());
     try {
-      const response:any = await login(payload);
+      let response:any = await login(payload);
+     response = response.data;
+      console.log(response);
       const userObject:IUserDetails = {
-        userID:response.userID, 
-        userName: response.username,
+        userID:response.userId??'', 
+        userName: response.username??'',
         fullname: response.firstName+' '+response.lastName,
         accessToken: response.accessToken
       }
-      dispatch(authSuccess({userObject}));
+      dispatch(authSuccess(userObject));
 
       navigation("/");
     } catch (error) {

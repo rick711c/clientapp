@@ -9,7 +9,7 @@ export interface IUserDetails {
   userName: string;
   fullname: string;
   email?: string;
-  phoneNumber?: string;
+  phoneNo?: string;
   accessToken: string | null;
 }
 
@@ -18,7 +18,7 @@ export const IUserDetailsInitialState: IUserDetails = {
   userName: "",
   fullname: "",
   email: "",
-  phoneNumber: "",
+  phoneNo: "",
   accessToken: null,
 };
 

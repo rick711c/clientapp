@@ -20,7 +20,7 @@ export const authSlice = createSlice({
           userName: "",
           fullname: "",
           email: "",
-          phoneNumber: action.payload.data.phonenumber,
+          phoneNo: action.payload.data.phonenumber,
           accessToken: action.payload.data.accessToken,
         },
         isLoading: false,

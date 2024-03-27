@@ -16,6 +16,7 @@ export const OTPInput = (props: any) => {
     <Box display={"flex"} flexDirection={"row"} gap={2}>
       {[0, 1, 2, 3].map((index) => (
         <TextField
+          key={index}
           variant="outlined"
           inputProps={{ inputMode: "numeric", pattern: "[0-9]*", maxLength: 1 }}
           value={otp[index]}

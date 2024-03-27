@@ -17,12 +17,12 @@ import useAuthService from "../../hooks/useAuthService";
 import { useState } from "react";
 
 export const Login = () => {
-  
+
   const { handleSendOTP } = useAuthService();
   const navigate = useNavigate();
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [phoneNo, setPhoneNumber] = useState<string>("");
   const handleClick = () => {
-    handleSendOTP({ phoneNo: phoneNumber }, navigate);
+    handleSendOTP({ phoneNo: phoneNo }, navigate);
   };
 
   return (
@@ -79,7 +79,7 @@ export const Login = () => {
 
             {/* mobile no text field */}
             <TextField
-              value={phoneNumber}
+              value={phoneNo}
               required
               id="outlined-required"
               label="Mobile No"

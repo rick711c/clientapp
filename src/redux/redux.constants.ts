@@ -10,6 +10,7 @@ export interface IUserDetails {
   fullname: string;
   email?: string;
   phoneNumber?: string;
+  accessToken: string | null;
 }
 
 export const IUserDetailsInitialState: IUserDetails = {
@@ -18,6 +19,7 @@ export const IUserDetailsInitialState: IUserDetails = {
   fullname: "",
   email: "",
   phoneNumber: "",
+  accessToken: null,
 };
 
 export const IAuthStateInitialState: IAuthState = {

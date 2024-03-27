@@ -9,18 +9,10 @@ import {
   otpSuccess,
 } from "../redux/silces/auth.silce";
 
-import {
-  appoinmentListRequested,
-  appoinmentListSucess,
-  dateSlotRequested,
-  dateSlotSucess,
-  timeSlotRequested,
-  timeSlotSucess,
-  upcomingAppoinmentRequested,
-  upcomingAppoinmentSucess,
-} from "../redux/silces/userdata.slice";
+
 import { RootState } from "../redux";
-import { appointments, dateSlots, timeSlots } from "../redux/redux.constants";
+import { appointments, dateSlots, IAuthState, IUserDetails, timeSlots } from "../redux/redux.constants";
+import { login, requestOTP } from "../services/auth/auth.service";
 
 export interface sendOTPPayload {
   phoneNumber: string;
@@ -32,7 +24,7 @@ const useAuthService = () => {
   const handleSendOTP = async (payload: sendOTPPayload, navigation: any) => {
     dispatch(otpRequested());
     try {
-      // const response = await apiServices.logInCall(payload);
+      const response = await requestOTP(payload)
       const data = { phonenumber: payload.phoneNumber };
       dispatch(otpSuccess({ data }));
       navigation("/getotp");
@@ -44,7 +36,14 @@ const useAuthService = () => {
   const handleLogIn = async (payload: any, navigation: any) => {
     dispatch(authRequested());
     try {
-      dispatch(authSuccess({}));
+      const response:any = await login(payload);
+      const userObject:IUserDetails = {
+        userID:response.userID, 
+        userName: response.username,
+        fullname: response.firstName+' '+response.lastName,
+        accessToken: response.accessToken
+      }
+      dispatch(authSuccess({userObject}));
 
       navigation("/");
     } catch (error) {

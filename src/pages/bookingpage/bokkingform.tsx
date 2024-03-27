@@ -168,7 +168,7 @@ export const BookingForm: React.FC = () => {
           color="secondary"
           onClick={handleButtonClick}
           style={{ width: "200px" }}
-          disabled={loading}
+          // disabled={loading}
         >
           Continue
         </Fab>

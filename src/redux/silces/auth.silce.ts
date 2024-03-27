@@ -21,6 +21,7 @@ export const authSlice = createSlice({
           fullname: "",
           email: "",
           phoneNumber: action.payload.data.phonenumber,
+          accessToken: action.payload.data.accessToken,
         },
         isLoading: false,
       };
@@ -31,6 +32,7 @@ export const authSlice = createSlice({
         isLoading: false,
         userDetails: null,
         errormessege: action.payload,
+        accessToken:null,
       };
     },
     authRequested: (state: IAuthState) => {
@@ -53,6 +55,7 @@ export const authSlice = createSlice({
         isLoading: false,
         userDetails: null,
         errormessege: action.payload,
+        accessToken:null,
       };
     },
 

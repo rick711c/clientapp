@@ -2,19 +2,29 @@ import { Box, Typography, Paper, Grid, Chip, Fab } from "@mui/material";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux";
-import { updateAppoinmentForm, addAppoinmentInListRequested } from "../../redux/silces/userdata.slice";
+import { updateAppointmentForm, addAppointmentInListRequested } from "../../redux/silces/userdata.slice";
 
 interface TimePickerProps {
     onClickHandler: () => void;
   }
   export const SelectTime: React.FC= () => {
+
     const timeSlots = useSelector(
       (state: RootState) => state.userdata.timeSlots.data
     );
+
+    const formData = useSelector(
+      (state: RootState) => state.userdata.appointmentForm
+    );
+
     const dispatch = useDispatch();
     const buttonClick = () => {
-      dispatch(updateAppoinmentForm({ appoinmentDate: selectedSlot }));
-      dispatch(addAppoinmentInListRequested());
+      dispatch(updateAppointmentForm({ appointmentDate: selectedSlot }));
+
+      const addAppointmentPayload = {
+
+      }
+      dispatch(addAppointmentInListRequested(addAppointmentPayload));
     };
   
     const [chipStates, setChipStates] = useState<

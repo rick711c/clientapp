@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ResponsiveAppBar from "../../components/appbar";
-import { UpcomingAppoinments } from "../../components/upcomingappointments.card";
+import { UpcomingAppointments } from "../../components/upcomingappointments.card";
 import { Box, Container, Fab, ThemeProvider, Typography } from "@mui/material";
 import { Margin } from "@mui/icons-material";
 import theme from "../../theme/theme";
@@ -59,7 +59,7 @@ const Homepage = () => {
             }}
           >
             <Typography variant="h3">Upcoming Appointments</Typography>
-            <UpcomingAppoinments
+            <UpcomingAppointments
               iconflag={true}
               patientnameflag={false}
               elevation={elevation}

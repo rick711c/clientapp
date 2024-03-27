@@ -23,7 +23,7 @@ interface Props {
   bottomborderflag: boolean;
 }
 
-export const UpcomingAppoinments: React.FC<Props> = ({
+export const UpcomingAppointments: React.FC<Props> = ({
   iconflag,
   patientnameflag,
   elevation,

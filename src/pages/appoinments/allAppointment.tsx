@@ -1,6 +1,6 @@
 import { Box, Container, ThemeProvider, useMediaQuery } from "@mui/material";
 import React from "react";
-import { UpcomingAppoinments } from "../../components/upcomingappointments.card";
+import { UpcomingAppointments } from "../../components/upcomingappointments.card";
 import { AppointmentDetails } from "./appointmentDetails";
 import theme from "../../theme/theme";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +29,7 @@ export const AllAppointment = () => {
       >
         {allAppointments.map((index) => (
           <Box sx={{ cursor: "pointer" }} onClick={showDetails}>
-            <UpcomingAppoinments
+            <UpcomingAppointments
               iconflag={false}
               patientnameflag={true}
               elevation={0}

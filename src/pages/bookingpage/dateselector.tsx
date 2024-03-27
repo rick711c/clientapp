@@ -2,7 +2,7 @@ import { Box, Typography, Paper, Grid, Chip, Fab } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { updateAppoinmentForm, timeSlotRequested } from "../../redux/silces/userdata.slice";
+import { updateAppointmentForm, timeSlotRequested } from "../../redux/silces/userdata.slice";
 import { useNavigate } from "react-router-dom";
 
 // date selector
@@ -16,7 +16,7 @@ interface DatePickerProps {
     );
     const navigate = useNavigate();
     const handleButtonClick = () => {
-      dispatch(updateAppoinmentForm({ appoinmentDate: selectedDate }));
+      dispatch(updateAppointmentForm({ appointmentDate: selectedDate }));
       dispatch(timeSlotRequested());
       navigate('/booknow/selecttime')
     };

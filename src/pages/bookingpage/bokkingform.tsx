@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   dateSlotRequested,
   timeSlotRequested,
-  updateAppoinmentForm,
+  updateAppointmentForm,
 } from "../../redux/silces/userdata.slice";
 import { RootState } from "../../redux";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 //   onclick: () => void;
 // }
 
-export const BokkingForm: React.FC = () => {
+export const BookingForm: React.FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(
     (state: RootState) => state.userdata.timeSlots.loading
@@ -34,15 +34,15 @@ export const BokkingForm: React.FC = () => {
   const [showDatepicker, setShowDatepicker] = useState(false);
   const [showTimepicker, setShowTimepicker] = useState(false);
 
-  const [appoinmentForm, setappoinmentForm] = useState<any>({});
+  const [appointmentForm, setappointmentForm] = useState<any>({});
   const navigator = useNavigate();
   const handleChange = (event: any) => {
     const { name, value } = event.target;
-    setappoinmentForm({ ...appoinmentForm, [name]: value });
+    setappointmentForm({ ...appointmentForm, [name]: value });
   };
 
   const handleButtonClick = () => {
-    dispatch(updateAppoinmentForm(appoinmentForm));
+    dispatch(updateAppointmentForm(appointmentForm));
     dispatch(dateSlotRequested());
 
     navigator("/booknow/selectedate");

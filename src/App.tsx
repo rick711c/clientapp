@@ -2,14 +2,16 @@ import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import Homepage from "./pages/homepage";
 import { Login } from "./pages/login/login";
 import { OTPpage } from "./pages/login/otppage";
-import { Appointments } from "./pages/appoinments";
-import { AppointmentDetails } from "./pages/appoinments/appointmentDetails";
+// import { Appointments } from "./pages/appointments";
+// import { AppointmentDetails } from "./pages/appointments/appointmentDetails";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./theme/theme";
-import { BokkingForm } from "./pages/bookingpage/bokkingform";
+import { BookingForm } from "./pages/bookingpage/bokkingform";
 import ResponsiveAppBar from "./components/appbar";
 import { SelectDate } from "./pages/bookingpage/dateselector";
 import { SelectTime } from "./pages/bookingpage/timeselector";
+import { Appointments } from "./pages/appoinments";
+import { AppointmentDetails } from "./pages/appoinments/appointmentDetails";
 
 const App = () => {
   return (
@@ -26,7 +28,7 @@ const App = () => {
               path="/appointmentdetails"
               element={<AppointmentDetails />}
             />
-            <Route path="/booknow" element={<BokkingForm />} />
+            <Route path="/booknow" element={<BookingForm />} />
             <Route path="/booknow/selectedate" element={<SelectDate />} />
             <Route path="/booknow/selecttime" element={<SelectTime />} />
 
